@@ -1,80 +1,50 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Alert, Button, StyleSheet, Text, View, TextInput ,ScrollView} from 'react-native';
+import {  StyleSheet,View, TextInput,Text,Button } from 'react-native';
 
 export default function App() {
 
-  //this is initial state that have a defaule value 'Qasim'
-  const [titleText, setTitleText] = useState('Qasim')
-  //this is just a text variable
-  const bodyText = 'This is react native dev Qasim'
-  //this is the lamda function that change the initial state to 'Muhammad Qasim'
-  const onPresstitle = () => {
-    setTitleText('Muhammad Qasim')
-  };
-
-  //text field
-  const [text, onChangeText] = useState('UseLess Text')
-  const [number, onChangeNumber] = useState('')
+  const [textField,onChangeText] = useState('Goal...')
   return (
-    
-    <View style={styles.container}>
-   <ScrollView style={styles.scrollView}>
+    <View style = {styles.appContainer}>
 
-      <Text style={styles.titleText} onPress={onPresstitle} >{titleText}</Text>
-      <TextInput
-      style = {styles.input}
-      onChangeText={onChangeText}
-      placeholder='Type your email'
-      keyboardType= 'email-address'
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeNumber}
-        value={number}
-        placeholder="useless placeholder"
-        keyboardType="numeric"
-      />
-        <Text style={styles.text}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Text>
-      </ScrollView>
-      <Button
-        style={styles.Button}
-        title='Press me'
-        onPress={() => Alert.alert('Simple Button pressed')}></Button>
-      <StatusBar style="auto" />
+      <View style = {styles.inputContainer}>
+        <TextInput style = {styles.textInput} onChangeText={onChangeText} placeholder='Your course goal!' />
+        <Button title='Add Goal'></Button>
+      </View>
+
+
+      <View>
+        <Text>List of goals...</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  appContainer: {
+    padding: 60
   },
-  titleText: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  inputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
-  Button: {
-    color: '#f194ff'
-  },
-  input: {
-    height: 40,
-    margin: 12,
+  textInput: {
     borderWidth: 1,
-    padding: 10,
-  },
-  scrollView: {
-    backgroundColor: 'pink',
+    borderColor: '#cf5e5ec',
+    width: '80%',
+    marginRight: 8,
+    padding: 8
   }
 });
+
+
+
+
+@Composable
+fun Counter() {
+    var count by remember { mutableStateOf(0) }
+    Button(onClick = { count++ }) {
+        Text(text = "Count: $count")
+    }
+}
